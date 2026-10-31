@@ -1,7 +1,7 @@
 # Real-Time ECG Arrhythmia Detection & Event Recorder
 
 <p align="center">
-  <img src="Images/Device.jpg" alt="ESP32-S3 ECG event recorder hardware prototype" width="850">
+  <img src="Images/Event_Recorder_Board.jpg" alt="ESP32-S3 ECG event recorder hardware prototype" width="850">
 </p>
 
 <p align="center">
@@ -68,18 +68,13 @@ The hardware integrates an ESP32-S3 microcontroller, ECG signal-conditioning cir
 The circuit schematic and PCB design files are provided for technical inspection and further development.
 
 <p align="center">
-  <img src="Images/PCB_Front.jpg" alt="PCB front view" width="48%">
-  <img src="Images/PCB_Rear.jpg" alt="PCB rear view" width="48%">
+  <img src="Images/Event_Recorder_PCB.png" alt="PCB front view" width="48%">
 </p>
 
 <p align="center">
-  <em>Custom PCB — Front and Rear Views</em>
+  <em>Custom PCB — Front View</em>
 </p>
 
-**Hardware Files**
-
-- [Circuit Schematics](Hardware/Schematic/)
-- [PCB Design Files](Hardware/PCB/)
 
 ## ECG Processing and Machine Learning
 
@@ -103,7 +98,7 @@ The demonstration provides a visual overview of the hardware prototype and its o
 
 The complete bachelor's thesis includes the theoretical background, related research, hardware design, embedded signal-processing methods, machine-learning implementation, and event-recording mechanism.
 
-[**Full Technical Report — PDF**](Report/BA_Project_Report_English.pdf)
+[Full Technical Report – PDF](Report/Event_Recorder_Report.pdf)
 
 ## Project Scope
 
