@@ -31,35 +31,48 @@ The detection framework focuses on premature ventricular contractions (PVCs), pr
 
 ## System Architecture
 
-```text
-ECG Electrodes
-       |
-       v
-ECG Analog Front-End
-(Amplification & Filtering)
-       |
-       v
-ESP32-S3 ADC (~195 Hz)
-       |
-       v
-10-Second Data Buffer
-       |
-       v
-ECG Preprocessing
-       |
-       v
-TensorFlow Lite Classifier
-       |
-       +---- Normal --> Continue Monitoring
-       |
-       +---- Arrhythmia Detected
-                    |
-                    v
-              Event Storage
-                    |
-                    v
-           Subsequent ECG Review
+The system integrates ECG signal acquisition, embedded signal
+processing, machine-learning-based classification, and
+event-triggered ECG recording.
+
+```mermaid
+flowchart LR
+
+    subgraph A["1. Signal Acquisition"]
+        direction TB
+        A1["ECG Electrodes"]
+        A2["Analog Front-End<br/>Amplification & Filtering"]
+        A3["ESP32-S3 ADC<br/>~195 Hz"]
+        A1 --> A2 --> A3
+    end
+
+    subgraph B["2. Embedded Processing"]
+        direction TB
+        B1["10-Second ECG Buffer"]
+        B2["Signal Preprocessing"]
+        B3["TensorFlow Lite Classifier"]
+        B1 --> B2 --> B3
+    end
+
+    subgraph C["3. Event Detection & Recording"]
+        direction TB
+        C1{"Suspected Arrhythmia?"}
+        C2["Continue Monitoring"]
+        C3["Save ECG Event"]
+        C4["Subsequent ECG Review"]
+        C1 -->|No| C2
+        C1 -->|Yes| C3 --> C4
+    end
+
+    A3 --> B1
+    B3 --> C1
+    C2 -.-> B1
 ```
+
+**Operating Principle:** ECG signals are acquired and analyzed
+in 10-second windows. When a suspected arrhythmic event is
+detected, the relevant ECG segment is stored for subsequent review.
+Otherwise, continuous monitoring proceeds.
 
 ## Hardware Implementation
 
